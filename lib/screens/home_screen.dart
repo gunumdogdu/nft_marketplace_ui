@@ -11,38 +11,55 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: SingleChildScrollView(
-              child: Column(
-                children: const [
-                  SizedBox(
-                    height: 60,
-                  ),
-                  ImageListView(
-                    startIndex: 1,
-                    duration: 25,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ImageListView(
-                    startIndex: 11,
-                    duration: 45,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ImageListView(
-                    startIndex: 21,
-                    duration: 65,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ImageListView(
-                    startIndex: 31,
-                    duration: 30,
-                  ),
-                ],
+            child: ShaderMask(
+              blendMode: BlendMode.dstOut,
+              shaderCallback: (rect) {
+                return LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.9),
+                    Colors.black,
+                  ],
+                  stops: const [0, 0.62, 0.67, 0.85, 1],
+                ).createShader(rect);
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      height: 60,
+                    ),
+                    ImageListView(
+                      startIndex: 1,
+                      duration: 25,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ImageListView(
+                      startIndex: 11,
+                      duration: 45,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ImageListView(
+                      startIndex: 21,
+                      duration: 65,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ImageListView(
+                      startIndex: 31,
+                      duration: 30,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -88,6 +105,8 @@ class HomeScreen extends StatelessWidget {
                     child: const Text(
                       'Discover',
                       style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
                         color: Colors.white,
                       ),
                     ),
